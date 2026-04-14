@@ -23,54 +23,64 @@
 </div>
 <div class="board">
 
-  <div class="column">
-    <h2>TODO</h2>
+  <div class="column"
+     cdkDropList
+     #todoList="cdkDropList"
+     [cdkDropListData]="todo"
+     [cdkDropListConnectedTo]="[doingList, doneList]"
+     (cdkDropListDropped)="drop($event,'TODO')">
 
-    <div class="card" *ngFor="let card of todo">
-      <h4>{{card.titulo}}</h4>
-      <p>{{card.descricao}}</p>
+  <h2>TODO</h2>
 
-      <button (click)="mover(card,'DOING')">
-        → DOING
-      </button>
-      <button (click)="deletar(card)">
-            🗑
-      </button>
-    </div>
+  <div class="card"
+       *ngFor="let card of todo"
+       cdkDrag
+       [cdkDragData]="card">
 
-  </div>
-
-  <div class="column">
-    <h2>DOING</h2>
-
-    <div class="card" *ngFor="let card of doing">
-      <h4>{{card.titulo}}</h4>
-      <p>{{card.descricao}}</p>
-
-      <button (click)="mover(card,'DONE')">
-        → DONE
-      </button>
-      <button (click)="deletar(card)">
-        🗑
-      </button>
-    </div>
+    <h4>{{card.titulo}}</h4>
+    <p>{{card.descricao}}</p>
 
   </div>
 
-  <div class="column">
-    <h2>DONE</h2>
+</div>
 
-    <div class="card" *ngFor="let card of done">
-      <h4>{{card.titulo}}</h4>
-      <p>{{card.descricao}}</p>
+  <div class="column"
+     cdkDropList
+     #doingList="cdkDropList"
+     [cdkDropListData]="doing"
+     [cdkDropListConnectedTo]="[todoList, doneList]"
+     (cdkDropListDropped)="drop($event,'DOING')">
 
-      <button (click)="mover(card,'TODO')">
-        ↺ TODO
-      </button>
-      <button (click)="deletar(card)">
-        🗑
-      </button>
-    </div>
+  <h2>DOING</h2>
+
+  <div class="card"
+       *ngFor="let card of doing"
+       cdkDrag
+       [cdkDragData]="card">
+
+    <h4>{{card.titulo}}</h4>
+    <p>{{card.descricao}}</p>
+
+  </div>
+
+</div>
+
+  <div class="column"
+     cdkDropList
+     #doneList="cdkDropList"
+     [cdkDropListData]="done"
+     [cdkDropListConnectedTo]="[todoList, doingList]"
+     (cdkDropListDropped)="drop($event,'DONE')">
+
+  <h2>DONE</h2>
+
+  <div class="card"
+       *ngFor="let card of done"
+       cdkDrag
+       [cdkDragData]="card">
+
+    <h4>{{card.titulo}}</h4>
+    <p>{{card.descricao}}</p>
 
   </div>
 

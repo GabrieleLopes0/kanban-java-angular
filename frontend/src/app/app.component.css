@@ -20,6 +20,19 @@
 input, select {
   padding: 8px;
 }
+.card {
+  cursor: grab;
+}
+
+.cdk-drag-preview {
+  background: white;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.cdk-drag-placeholder {
+  opacity: 0.3;
+}
 
 .card {
   background: white;
