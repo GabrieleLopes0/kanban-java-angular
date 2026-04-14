@@ -1,6 +1,7 @@
 package com.kanban.kanban.service;
 
 import com.kanban.kanban.dto.CardRequest;
+import com.kanban.kanban.exception.CardNotFoundException;
 import com.kanban.kanban.model.Card;
 import com.kanban.kanban.model.StatusCard;
 import com.kanban.kanban.repository.CardRepository;
@@ -36,7 +37,7 @@ public class CardService {
 
     public Card buscarPorId(Long id) {
         return repository.buscarPorId(id)
-                .orElseThrow(() -> new RuntimeException("Card não encontrado"));
+                .orElseThrow(() -> new CardNotFoundException(id));
     }
 
     public void deletar(Long id) {
