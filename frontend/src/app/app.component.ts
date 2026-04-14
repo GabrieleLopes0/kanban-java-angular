@@ -7,7 +7,8 @@ import { Card } from './models/card'
   selector: 'app-root',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './app.component.html'
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {
 
@@ -27,5 +28,12 @@ export class AppComponent implements OnInit {
       this.doing = cards.filter(c => c.status === 'DOING')
       this.done = cards.filter(c => c.status === 'DONE')
     })
+  }
+
+  mover(card: Card, status: string) {
+    this.service.updateStatus(card.id, status)
+      .subscribe(() => {
+        this.carregarCards()
+      })
   }
 }

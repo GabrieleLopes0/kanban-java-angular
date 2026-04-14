@@ -6,6 +6,10 @@
     <div class="card" *ngFor="let card of todo">
       <h4>{{card.titulo}}</h4>
       <p>{{card.descricao}}</p>
+
+      <button (click)="mover(card,'DOING')">
+        → DOING
+      </button>
     </div>
 
   </div>
@@ -16,6 +20,10 @@
     <div class="card" *ngFor="let card of doing">
       <h4>{{card.titulo}}</h4>
       <p>{{card.descricao}}</p>
+
+      <button (click)="mover(card,'DONE')">
+        → DONE
+      </button>
     </div>
 
   </div>
@@ -26,6 +34,10 @@
     <div class="card" *ngFor="let card of done">
       <h4>{{card.titulo}}</h4>
       <p>{{card.descricao}}</p>
+
+      <button (click)="mover(card,'TODO')">
+        ↺ TODO
+      </button>
     </div>
 
   </div>
