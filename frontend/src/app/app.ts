@@ -39,7 +39,10 @@ export class App implements OnInit {
     this.service.updateStatus(card.id, status)
       .subscribe(() => this.carregarCards())
   }
-
+  deletar(card: Card) {
+    this.service.deleteCard(card.id)
+      .subscribe(() => this.carregarCards())
+  }
   criar() {
     const card = {
       titulo: this.novoTitulo,
