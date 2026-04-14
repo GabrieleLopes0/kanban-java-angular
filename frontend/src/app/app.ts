@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common'
 import { FormsModule } from '@angular/forms'
 import { CardService } from './services/card.service'
 import { Card } from './models/card'
+import { DragDropModule, CdkDragDrop } from '@angular/cdk/drag-drop'
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, DragDropModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -33,6 +34,12 @@ export class App implements OnInit {
       this.doing = cards.filter(c => c.status === 'DOING')
       this.done = cards.filter(c => c.status === 'DONE')
     })
+  }
+  drop(event: CdkDragDrop<Card[]>, status: string) {
+  const card = event.item.data
+
+  this.service.updateStatus(card.id, status)
+    .subscribe(() => this.carregarCards())
   }
 
   mover(card: Card, status: string) {
