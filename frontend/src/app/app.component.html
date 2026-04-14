@@ -1,3 +1,26 @@
+<div class="form">
+
+  <input 
+    placeholder="Título"
+    [(ngModel)]="novoTitulo"
+  />
+
+  <input 
+    placeholder="Descrição"
+    [(ngModel)]="novaDescricao"
+  />
+
+  <select [(ngModel)]="novaPrioridade">
+    <option [value]="1">Alta</option>
+    <option [value]="2">Média</option>
+    <option [value]="3">Baixa</option>
+  </select>
+
+  <button (click)="criar()">
+    Criar Card
+  </button>
+
+</div>
 <div class="board">
 
   <div class="column">
